@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>360 — The Strategy Behind the Activation</title>
+<style>
+  :root{
+    --ink:#161B26;
+    --blue:#0A1F44;        /* midnight / brand */
+    --royal:#1B4DB1;       /* accent blue */
+    --cherry:#E11D48;      /* 360 cherry */
+    --sun:#F4A91F;         /* the day / under the sun */
+    --indigo:#2A2A6A;      /* the night */
+    --silver:#8A94A6;
+    --mist:#F4F6FA;
+    --line:#E2E7F0;
+  }
+
+  @page{
+    size:A4;
+    margin:20mm 18mm 22mm 18mm;
+    @bottom-left{
+      content:"HaitiBrand  ·  Strategic intelligence for ISM";
+      font-family:Georgia, serif; font-size:7.5pt; color:#9AA3B2;
+    }
+    @bottom-center{
+      content:"Confidential";
+      font-family:Georgia, serif; font-size:7.5pt; color:#C0C7D2;
+    }
+    @bottom-right{
+      content:"360 · " counter(page);
+      font-family:Georgia, serif; font-size:7.5pt; color:#9AA3B2;
+    }
+  }
+  @page cover{ margin:0; @bottom-left{content:""} @bottom-center{content:""} @bottom-right{content:""} }
+
+  *{box-sizing:border-box;}
+  html{ -weasy-hyphens:none; }
+  body{
+    font-family:Georgia, 'Times New Roman', serif;
+    color:var(--ink); font-size:10.5pt; line-height:1.62; margin:0;
+  }
+  h1,h2,h3,.kicker,.lede-num,.tag,.day-tag,.night-tag,.cover-brand,.cover-foot,th,.maptag{
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* ---------- COVER ---------- */
+  .cover{ page:cover; position:relative; height:297mm; width:210mm;
+    background:
+      radial-gradient(circle at 78% 26%, rgba(225,29,72,.20), rgba(225,29,72,0) 38%),
+      linear-gradient(160deg,#08172F 0%, #0A1F44 46%, #0C2B63 100%);
+    color:#fff; overflow:hidden; page-break-after:always;
+  }
+  .rings{ position:absolute; top:-160mm; right:-90mm; width:300mm; height:300mm; }
+  .rings span{ position:absolute; border-radius:50%; border:1px solid rgba(255,255,255,.08); }
+  .r1{inset:0} .r2{inset:26mm} .r3{inset:52mm} .r4{inset:78mm} .r5{inset:104mm;border-color:rgba(225,29,72,.35)!important}
+  .cover-inner{ position:relative; padding:30mm 22mm; height:100%; display:block; }
+  .cover-brand{ font-size:11pt; letter-spacing:.42em; text-transform:uppercase; color:#9FB4DD; font-weight:700; }
+  .cover-brand b{ color:var(--cherry); }
+  .cover-360{ font-size:120pt; line-height:.9; font-weight:800; letter-spacing:-3px; margin:14mm 0 0;
+    color:#EAF1FC; text-shadow:0 2px 18px rgba(8,23,47,.55); }
+  .cover-360 sup{ font-size:34pt; color:var(--cherry); vertical-align:super; }
+  h1.cover-h1{ font-size:25pt; font-weight:700; line-height:1.18; margin:6mm 0 0; max-width:150mm; }
+  h1.cover-h1 em{ color:var(--cherry); font-style:normal; }
+  .cover-sub{ font-size:12pt; color:#B7C6E4; max-width:140mm; margin-top:7mm; line-height:1.5; font-family:Georgia,serif; }
+  .cover-rule{ width:34mm; height:3px; background:var(--cherry); margin:11mm 0; border:0; }
+  .cover-foot{ position:absolute; left:22mm; bottom:22mm; right:22mm; font-size:9.5pt; color:#9FB4DD;
+    border-top:1px solid rgba(255,255,255,.14); padding-top:6mm; display:flex; justify-content:space-between; }
+  .cover-foot b{ color:#fff; font-weight:600; display:block; font-size:10.5pt; }
+
+  /* ---------- FLOW ---------- */
+  section{ page-break-inside:auto; }
+  .break{ page-break-before:always; }
+  .kicker{ display:inline-block; font-size:8pt; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--cherry); font-weight:700; margin:0 0 3mm; }
+  h2{ font-size:19pt; line-height:1.16; color:var(--blue); margin:0 0 4mm; font-weight:700; letter-spacing:-.3px; }
+  h2 .n{ color:var(--silver); font-weight:700; margin-right:4mm; }
+  h3{ font-size:12pt; color:var(--blue); margin:7mm 0 2mm; font-weight:700; }
+  p{ margin:0 0 3.4mm; }
+  .lead{ font-size:12pt; line-height:1.6; color:#2A3344; }
+  strong{ color:var(--blue); }
+  em.cherry{ font-style:normal; color:var(--cherry); font-weight:700; }
+  .quote{ font-size:13.5pt; line-height:1.5; color:var(--blue); font-style:italic;
+    border-left:3px solid var(--cherry); padding:1mm 0 1mm 7mm; margin:6mm 0; }
+  .quote.kreyol{ color:var(--indigo); }
+
+  /* authority callout */
+  .callout{ background:var(--blue); color:#fff; border-radius:3mm; padding:8mm 9mm; margin:7mm 0; }
+  .callout .kicker{ color:#7FA0DC; }
+  .callout p{ margin:0; font-size:13pt; line-height:1.5; }
+  .callout em{ color:#FF6B86; font-style:normal; font-weight:700; }
+
+  /* pillar cards */
+  .pillar{ border:1px solid var(--line); border-radius:3mm; padding:7mm 8mm; margin:5mm 0; page-break-inside:avoid; }
+  .pillar.day{ border-top:5px solid var(--sun); background:linear-gradient(180deg,#FFFBF2,#fff 40%); }
+  .pillar.night{ border-top:5px solid var(--indigo); background:linear-gradient(180deg,#F4F4FB,#fff 40%); }
+  .day-tag,.night-tag{ display:inline-block; font-size:7.5pt; letter-spacing:.22em; text-transform:uppercase;
+    font-weight:700; padding:1.4mm 3mm; border-radius:20px; margin-bottom:3mm; }
+  .day-tag{ background:#FBEBC8; color:#8A5A00; }
+  .night-tag{ background:#DEDEF4; color:#2A2A6A; }
+  .pillar h3{ margin-top:1mm; font-size:15pt; }
+  .who{ list-style:none; padding:0; margin:3mm 0 4mm; }
+  .who li{ padding:1.6mm 0 1.6mm 7mm; position:relative; border-bottom:1px solid var(--line); }
+  .who li:last-child{ border-bottom:0; }
+  .who li::before{ content:"›"; position:absolute; left:0; color:var(--cherry); font-weight:700; }
+  .who b{ color:var(--blue); }
+
+  /* mechanic / steps */
+  .mech{ background:var(--mist); border-radius:3mm; padding:6mm 8mm; margin:5mm 0; page-break-inside:avoid; }
+  .mech h3{ margin-top:0; }
+  ol.steps{ margin:2mm 0 0; padding-left:5mm; }
+  ol.steps li{ margin:0 0 2.6mm; padding-left:2mm; }
+  .guard{ border-left:3px solid var(--sun); background:#FFFBF2; padding:4mm 6mm; margin-top:4mm; font-size:10pt; border-radius:0 2mm 2mm 0; }
+  .guard b{ color:#8A5A00; }
+
+  /* map table */
+  table.map{ width:100%; border-collapse:collapse; margin:5mm 0; font-size:9.5pt; page-break-inside:avoid; }
+  table.map th{ background:var(--blue); color:#fff; text-align:left; padding:3mm 4mm; font-size:8pt;
+    letter-spacing:.06em; text-transform:uppercase; }
+  table.map td{ padding:3.4mm 4mm; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.map tr.dayrow td:first-child{ border-left:4px solid var(--sun); }
+  table.map tr.nightrow td:first-child{ border-left:4px solid var(--indigo); }
+  .maptag{ font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  .maptag.d{ color:#8A5A00; } .maptag.n{ color:var(--indigo); }
+
+  .deliver{ border:1px dashed var(--cherry); border-radius:3mm; padding:7mm 8mm; margin:6mm 0; background:#FFF6F8; page-break-inside:avoid; }
+  .deliver h3{ color:var(--cherry); margin-top:0; }
+
+  .close{ text-align:center; margin:14mm 0 0; }
+  .close .big{ font-family:'Helvetica Neue',Arial,sans-serif; font-weight:800; font-size:22pt; color:var(--blue); letter-spacing:-.5px; }
+  .close .big em{ color:var(--cherry); font-style:normal; }
+  .close .sig{ font-size:10pt; color:var(--silver); margin-top:5mm; }
+  hr.soft{ border:0; border-top:1px solid var(--line); margin:8mm 0; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="rings"><span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div>
+  <div class="cover-inner">
+    <div class="cover-brand">Haiti<b>Brand</b> &nbsp;·&nbsp; Strategic Intelligence</div>
+    <div class="cover-360">360<sup>°</sup></div>
+    <h1 class="cover-h1">The Strategy <em>Behind</em> the Activation</h1>
+    <hr class="cover-rule">
+    <div class="cover-sub">How 360 wins the Grand Nord — day and night — and beats Toro on the ground. The brand &amp; audience thinking beneath the BTL and digital plan already on your desk.</div>
+    <div class="cover-foot">
+      <div><b>Prepared for Industrias San Miguel</b>Attn. Mirko Carrera — 360 Haïti</div>
+      <div style="text-align:right"><b>HaitiBrand</b>June 2026 · Confidential</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 0 · WHY ============ -->
+<section>
+  <span class="kicker">Why this document</span>
+  <h2>The thinking beneath the plan</h2>
+  <p class="lead">The campaign proposal and the media plan we have already shared answer the <strong>what</strong> — the BTL and digital activation, initiative by initiative. This document is the <strong>why</strong> beneath it: the brand idea and the audience strategy the activation exists to deliver. It also answers, head-on, the question your media team raised — how we segment the audience and how we target it.</p>
+  <p>Everything that follows is built on <strong>HaitiBrand's own market intelligence</strong> — our data, our read of the category, our reading of the competition in the North of Haiti.</p>
+
+  <div class="callout">
+    <span class="kicker">Our edge, said plainly</span>
+    <p>We know your competitor <em>better than anyone</em>. We hold the data on Toro — how they go to market, how they distribute, how they advertise. We know their commercial strategy and their marketing strategy. That is precisely why we can show you, step by step, how 360 takes this market from them — <em>progressively</em>.</p>
+  </div>
+</section>
+
+<!-- ============ 1 · IDEA ============ -->
+<section class="break">
+  <span class="kicker">The idea</span>
+  <h2><span class="n">01</span>Everything you do, you do it at 360</h2>
+  <p class="lead">360 is not a moment in the day. <strong>360 is the whole circle of it.</strong> The degree sign is the promise: we are in every part of your life — at sunrise when the work begins, and after dark when the living begins.</p>
+  <p>One human truth carries the brand: <strong>energy lived with honor by day, and with passion by night.</strong> Two faces of the same idea — and two audiences who together close the circle. That is <em class="cherry">360 Live</em>: you live your life fully, boldly, on your own terms — and 360 is the energy that lets you.</p>
+  <div class="quote">Tout sa w ap fè, ou fè l a 360. — Everything you do, you do it at 360.</div>
+</section>
+
+<!-- ============ 2 · WEDGE ============ -->
+<section class="break">
+  <span class="kicker">The competitive wedge</span>
+  <h2><span class="n">02</span>Beating Toro on the ground</h2>
+  <p class="lead">Toro is the incumbent in the Grand Nord, and we respect what it has built. But our intelligence on Toro exposes a structural weakness we can turn into 360's opening.</p>
+  <p>Toro lives in <strong>daily life</strong> — present, available, woven into the routine. People may even pour it at night. But Toro does <strong>not actively go after the night.</strong> And the reason is structural: Toro sits inside the <strong>BRANA</strong> portfolio, which already owns the night through its other brands. Toro holds back from the night-time occasion on purpose — to avoid cannibalising its own stablemates.</p>
+  <p>That restraint is a door left open. 360 walks straight through it.</p>
+  <div class="quote">We do not attack Toro where it is strong — the day. We <strong>own where it will not go</strong> — the night — and then we earn the day through respect. It is a lane Toro cannot follow us into without breaking its own portfolio logic.</div>
+  <p>This is how 360 moves from a strong number two toward first place — not in one leap, but <strong>progressively</strong>: take the night Toro vacates, then out-respect Toro in the day it owns.</p>
+</section>
+
+<!-- ============ 3 · AUDIENCE ============ -->
+<section class="break">
+  <span class="kicker">The audience</span>
+  <h2><span class="n">03</span>Two pillars, one circle</h2>
+  <p class="lead">We do not build the audience on demographics. We build it on a human truth, split into two pillars under one idea. One lives by <strong>day</strong> and drinks for the grind. One lives by <strong>night</strong> and drinks for the life. Together, they are 360 — the full circle of Haiti.</p>
+
+  <div class="pillar day">
+    <span class="day-tag">☀ Daily life · functional fuel</span>
+    <h3>Pillar 1 — The Hard Workers</h3>
+    <p>The backbone of Haiti. The masses. The informal economy that keeps the country standing. These are the people who choose, every single day, to carry their families on their backs.</p>
+    <ul class="who">
+      <li><b>The Madan Sara</b> — the market women. Single mothers working twenty-hour days, moving goods across the country, feeding the nation, fighting for their children.</li>
+      <li><b>The men who carry the country</b> — moto-taxi and taxi drivers, <b>mécaniciens, ébénistes</b> and the men who work the wood, <b>constructeurs, agriculteurs</b> — everyone who works under the sun and earns with their hands.</li>
+    </ul>
+    <p><strong>The insight:</strong> they do hard, honourable work — and that work demands real energy.</p>
+    <div class="quote">You chose to live at 360. You hustle to carry your family — you are a <em>360 supporter</em>, a 360 man, a 360 woman. Everything you do, you do with honour, and honour takes energy. <strong>360 is there for you.</strong></div>
+    <p><strong>Versus Toro:</strong> this is Toro's stronghold — its daily presence. We do not try to out-spend Toro here. We <strong>out-respect</strong> it — we honour the hustle in a way a portfolio brand never bothers to.</p>
+  </div>
+
+  <div class="pillar night">
+    <span class="night-tag">☾ Night life · experiential energy</span>
+    <h3>Pillar 2 — The Young Generation</h3>
+    <p>Young women and young men — hyped, ambitious, full of life. They want to build a life <em>and</em> live it.</p>
+    <ul class="who">
+      <li><b>What drives them</b> — to study, to build a better future, to do everything with passion, to live boldly on their own terms.</li>
+      <li><b>What they refuse</b> — a life dictated by anyone else. A life someone tells them how to live.</li>
+    </ul>
+    <p><strong>The insight:</strong> ambition and appetite for life both run on energy.</p>
+    <div class="quote kreyol">You need energy to study. Energy to build your future. Energy to advance. Energy to live a life <strong>nobody gets to dictate for you</strong>. So you do it at 360. <em>360 Live</em> — live your life with passion, boldly.</div>
+    <p><strong>Versus Toro:</strong> this is the open lane — the night Toro will not enter. Here, 360 is uncontested.</p>
+  </div>
+</section>
+
+<!-- ============ 4 · OWNING THE NIGHT ============ -->
+<section class="break">
+  <span class="kicker">Owning the night</span>
+  <h2><span class="n">04</span>The night occasion — and the mixer mechanic</h2>
+  <p class="lead">We win the night through a series of <strong>360 experiences</strong>: Meet &amp; Greets, Speakeasy nights, and Speed Dating — <em class="cherry">Powered by 360</em>, with Cherry as the hero flavour. These are 360-branded occasions where the brand lives inside the night as the energy of the room — never as a lecture.</p>
+  <p style="font-size:9.5pt;color:#5A6473;"><em>A note on roles: 360 is the brand at the centre of everything — the events belong to 360. HaitiBrand is the agency that designs and directs the play, based on our analysis of this market and this competitor.</em></p>
+
+  <div class="mech">
+    <h3>The in-venue mixer mechanic — explicit, but contained</h3>
+    <ol class="steps">
+      <li>At a point in the night, <strong>360 Cherry is served as a mixer</strong> — in the glass, with rum, and with vodka.</li>
+      <li>It is <strong>not 360's own message</strong> telling people to mix. It runs through <strong>venue partnerships</strong> in the campaign cities — Cap-Haïtien, Les Gonaïves, Limonade. The <strong>bar owners and servers</strong> present it, and it appears <strong>on the menu</strong> — &ldquo;360 Energy Cherry, mixed with rum / vodka&rdquo; — without naming the rum or vodka brand.</li>
+      <li>People already mix energy with spirits when they go out. We do not invent the behaviour — we <strong>organise and brand the room</strong> where it happens, so 360 becomes the energy of the night.</li>
+    </ol>
+    <div class="guard"><b>Responsible by design:</b> the mixer association is kept <strong>out of 360's paid and social communication entirely</strong>. It lives only inside the venue and the menu — protecting the brand's responsible-marketing posture while 360 quietly owns the night-time occasion.</div>
+  </div>
+</section>
+
+<!-- ============ 5 · ONE CIRCLE ============ -->
+<section class="break">
+  <span class="kicker">Closing the circle</span>
+  <h2><span class="n">05</span>How the two pillars drive the activation</h2>
+  <p class="lead">The strategy and the plan are one circle. Each pillar maps to an occasion, an activation already in the proposal, and a role for the brand.</p>
+
+  <table class="map">
+    <thead>
+      <tr><th style="width:21%">Pillar</th><th style="width:18%">Occasion</th><th style="width:34%">Activation in the plan</th><th>Brand role</th></tr>
+    </thead>
+    <tbody>
+      <tr class="dayrow">
+        <td><span class="maptag d">☀ Day</span><br><b>The Hard Workers</b></td>
+        <td>The daily grind</td>
+        <td>Cherry Drop sampling · Plen Enèji weekly challenge · 360 Arena daytime energy · tap-tap &amp; OOH · radio</td>
+        <td>Honest fuel for the hustle — honour the work</td>
+      </tr>
+      <tr class="nightrow">
+        <td><span class="maptag n">☾ Night</span><br><b>The Young Generation</b></td>
+        <td>The night out</td>
+        <td>360 night-event series — Meet &amp; Greet · Speakeasy · Speed Dating, Powered by 360 · in-venue Cherry mixer via bar partners</td>
+        <td>The energy of the experience — live boldly</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Day fuels the grind; night fuels the life. Together they close the circle Toro leaves open — and they make the promise literal: <strong>360 is in your life, 360°.</strong></p>
+</section>
+
+<!-- ============ 6 · DELIVERABLE ============ -->
+<section class="break">
+  <span class="kicker">A deliverable you keep</span>
+  <h2><span class="n">06</span>The 360 Consumer Customer Journey</h2>
+  <p class="lead">As part of running this campaign, HaitiBrand will build and hand ISM a complete <strong>Customer Journey for the 360 energy-drink consumer</strong> — a strategic asset that outlives the campaign.</p>
+
+  <div class="deliver">
+    <h3>What it is</h3>
+    <p>A map of how the Haitian energy-drink consumer <strong>discovers, tries, adopts and advocates</strong> — by day and by night, across both pillars: the Hard Workers and the Young Generation.</p>
+    <h3>How we build it</h3>
+    <p>From the <strong>data and insight HaitiBrand already holds</strong> on the category — including the intelligence we have developed on <strong>Toro</strong> — and then <strong>enriched with live insight captured during the campaign itself.</strong> The campaign does not just sell; it <em>learns</em>, and that learning becomes yours.</p>
+    <h3>What you get</h3>
+    <p>A <strong>campaign deliverable ISM owns and can reuse</strong> for every future activity in this market — grounded in real consumer and competitor truth, not assumption. Because we know this competitor and this consumer this deeply, the journey is built on ground truth.</p>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section>
+  <hr class="soft">
+  <div class="close">
+    <div class="big">Everything you do, <em>you do it at 360.</em></div>
+    <div class="sig">HaitiBrand is staged and ready to move the moment you give the word.<br>Prepared for Industrias San Miguel · 360 Haïti · June 2026 · Confidential</div>
+  </div>
+</section>
+
+</body>
+</html>
