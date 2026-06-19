@@ -2,289 +2,443 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>360 — The Strategy Behind the Activation</title>
+<title>360 Haiti — Brand Strategy</title>
 <style>
+  @font-face{ font-family:'Archivo Black'; src:url('fonts/ArchivoBlack-Regular.ttf') format('truetype'); font-weight:400 900; font-style:normal; }
+
   :root{
-    --ink:#161B26;
-    --blue:#0A1F44;        /* midnight / brand */
-    --royal:#1B4DB1;       /* accent blue */
-    --cherry:#E11D48;      /* 360 cherry */
-    --sun:#F4A91F;         /* the day / under the sun */
-    --indigo:#2A2A6A;      /* the night */
-    --silver:#8A94A6;
-    --mist:#F4F6FA;
-    --line:#E2E7F0;
+    --bg:#0B0F26; --bg2:#0C1027; --card:#151E3D; --card2:#18224A; --cardline:rgba(255,255,255,.085);
+    --azure:#2E9BFF; --red:#E0263C; --slate:#42587F; --muted:#8A8FA0; --white:#FFFFFF;
+    --ink:#0F1730; --ink2:#2D354C; --lmuted:#8A90A0; --lpanel:#F4F7FB; --lpanel2:#EEF2F8; --lline:#E5EAF2;
+    --disp:'Archivo Black','Liberation Sans',Arial,sans-serif;
+    --sans:'Liberation Sans',Arial,Helvetica,sans-serif;
   }
-
-  @page{
-    size:A4;
-    margin:20mm 18mm 22mm 18mm;
-    @bottom-left{
-      content:"HaitiBrand  ·  Strategic intelligence for ISM";
-      font-family:Georgia, serif; font-size:7.5pt; color:#9AA3B2;
-    }
-    @bottom-center{
-      content:"Confidential";
-      font-family:Georgia, serif; font-size:7.5pt; color:#C0C7D2;
-    }
-    @bottom-right{
-      content:"360 · " counter(page);
-      font-family:Georgia, serif; font-size:7.5pt; color:#9AA3B2;
-    }
-  }
-  @page cover{ margin:0; @bottom-left{content:""} @bottom-center{content:""} @bottom-right{content:""} }
-
-  *{box-sizing:border-box;}
+  @page{ size:10in 5.625in; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
   html{ -weasy-hyphens:none; }
-  body{
-    font-family:Georgia, 'Times New Roman', serif;
-    color:var(--ink); font-size:10.5pt; line-height:1.62; margin:0;
-  }
-  h1,h2,h3,.kicker,.lede-num,.tag,.day-tag,.night-tag,.cover-brand,.cover-foot,th,.maptag{
-    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
+  body{ font-family:var(--sans); color:var(--white); }
 
-  /* ---------- COVER ---------- */
-  .cover{ page:cover; position:relative; height:297mm; width:210mm;
-    background:
-      radial-gradient(circle at 78% 26%, rgba(225,29,72,.20), rgba(225,29,72,0) 38%),
-      linear-gradient(160deg,#08172F 0%, #0A1F44 46%, #0C2B63 100%);
-    color:#fff; overflow:hidden; page-break-after:always;
-  }
-  .rings{ position:absolute; top:-160mm; right:-90mm; width:300mm; height:300mm; }
-  .rings span{ position:absolute; border-radius:50%; border:1px solid rgba(255,255,255,.08); }
-  .r1{inset:0} .r2{inset:26mm} .r3{inset:52mm} .r4{inset:78mm} .r5{inset:104mm;border-color:rgba(225,29,72,.35)!important}
-  .cover-inner{ position:relative; padding:30mm 22mm; height:100%; display:block; }
-  .cover-brand{ font-size:11pt; letter-spacing:.42em; text-transform:uppercase; color:#9FB4DD; font-weight:700; }
-  .cover-brand b{ color:var(--cherry); }
-  .cover-360{ font-size:120pt; line-height:.9; font-weight:800; letter-spacing:-3px; margin:14mm 0 0;
-    color:#EAF1FC; text-shadow:0 2px 18px rgba(8,23,47,.55); }
-  .cover-360 sup{ font-size:34pt; color:var(--cherry); vertical-align:super; }
-  h1.cover-h1{ font-size:25pt; font-weight:700; line-height:1.18; margin:6mm 0 0; max-width:150mm; }
-  h1.cover-h1 em{ color:var(--cherry); font-style:normal; }
-  .cover-sub{ font-size:12pt; color:#B7C6E4; max-width:140mm; margin-top:7mm; line-height:1.5; font-family:Georgia,serif; }
-  .cover-rule{ width:34mm; height:3px; background:var(--cherry); margin:11mm 0; border:0; }
-  .cover-foot{ position:absolute; left:22mm; bottom:22mm; right:22mm; font-size:9.5pt; color:#9FB4DD;
-    border-top:1px solid rgba(255,255,255,.14); padding-top:6mm; display:flex; justify-content:space-between; }
-  .cover-foot b{ color:#fff; font-weight:600; display:block; font-size:10.5pt; }
+  .slide{ width:10in; height:5.625in; position:relative; overflow:hidden;
+    background:var(--bg); page-break-after:always; }
+  .slide:last-child{ page-break-after:auto; }
+  .pad{ position:absolute; inset:0; padding:34pt 42pt; }
+  .light{ background:#FFFFFF; color:var(--ink); }
 
-  /* ---------- FLOW ---------- */
-  section{ page-break-inside:auto; }
-  .break{ page-break-before:always; }
-  .kicker{ display:inline-block; font-size:8pt; letter-spacing:.28em; text-transform:uppercase;
-    color:var(--cherry); font-weight:700; margin:0 0 3mm; }
-  h2{ font-size:19pt; line-height:1.16; color:var(--blue); margin:0 0 4mm; font-weight:700; letter-spacing:-.3px; }
-  h2 .n{ color:var(--silver); font-weight:700; margin-right:4mm; }
-  h3{ font-size:12pt; color:var(--blue); margin:7mm 0 2mm; font-weight:700; }
-  p{ margin:0 0 3.4mm; }
-  .lead{ font-size:12pt; line-height:1.6; color:#2A3344; }
-  strong{ color:var(--blue); }
-  em.cherry{ font-style:normal; color:var(--cherry); font-weight:700; }
-  .quote{ font-size:13.5pt; line-height:1.5; color:var(--blue); font-style:italic;
-    border-left:3px solid var(--cherry); padding:1mm 0 1mm 7mm; margin:6mm 0; }
-  .quote.kreyol{ color:var(--indigo); }
+  /* shared type */
+  .kick{ font-family:var(--sans); font-weight:700; font-size:9pt; letter-spacing:.17em;
+    text-transform:uppercase; color:var(--azure); }
+  .light .kick{ color:#1C7FE6; }
+  h1.head{ font-family:var(--sans); font-weight:700; font-size:25pt; line-height:1.1; color:var(--white);
+    letter-spacing:-.3px; margin-top:9pt; }
+  .light h1.head{ color:var(--ink); }
+  h1.head .r{ color:var(--red); }
+  h1.head .b{ color:var(--azure); }
+  .body{ font-size:10.5pt; line-height:1.5; color:var(--muted); }
+  .light .body{ color:var(--ink2); }
+  .foot{ position:absolute; left:42pt; right:42pt; bottom:20pt; font-style:italic; font-size:8pt;
+    color:#6E7488; }
+  .light .foot{ color:#9AA1B2; }
+  .num{ position:absolute; right:30pt; bottom:16pt; font-size:7.5pt; letter-spacing:.12em;
+    color:#4A5170; font-weight:700; } .light .num{ color:#C2C9D6; }
+  .mono-mark{ font-family:var(--disp); font-size:13pt; letter-spacing:-.3px; color:var(--white); }
+  .mono-mark .d{ color:var(--red); }
 
-  /* authority callout */
-  .callout{ background:var(--blue); color:#fff; border-radius:3mm; padding:8mm 9mm; margin:7mm 0; }
-  .callout .kicker{ color:#7FA0DC; }
-  .callout p{ margin:0; font-size:13pt; line-height:1.5; }
-  .callout em{ color:#FF6B86; font-style:normal; font-weight:700; }
+  /* ===== COVER ===== */
+  .cover .kick{ font-size:10pt; letter-spacing:.2em; }
+  .cover .hero{ font-family:var(--disp); font-size:58pt; line-height:.93; color:var(--white);
+    text-transform:uppercase; letter-spacing:-1px; margin-top:20pt; }
+  .cover .sub{ font-size:11pt; line-height:1.55; color:#9DA5BE; max-width:430pt; margin-top:20pt; }
+  .cover .lock{ position:absolute; left:42pt; bottom:30pt; }
+  .cover .lock .m{ font-family:var(--disp); font-size:17pt; letter-spacing:-.4px; color:#fff; }
+  .cover .lock .m .d{ color:var(--red); }
+  .rings{ position:absolute; right:-70pt; top:60pt; width:430pt; height:430pt; }
 
-  /* pillar cards */
-  .pillar{ border:1px solid var(--line); border-radius:3mm; padding:7mm 8mm; margin:5mm 0; page-break-inside:avoid; }
-  .pillar.day{ border-top:5px solid var(--sun); background:linear-gradient(180deg,#FFFBF2,#fff 40%); }
-  .pillar.night{ border-top:5px solid var(--indigo); background:linear-gradient(180deg,#F4F4FB,#fff 40%); }
-  .day-tag,.night-tag{ display:inline-block; font-size:7.5pt; letter-spacing:.22em; text-transform:uppercase;
-    font-weight:700; padding:1.4mm 3mm; border-radius:20px; margin-bottom:3mm; }
-  .day-tag{ background:#FBEBC8; color:#8A5A00; }
-  .night-tag{ background:#DEDEF4; color:#2A2A6A; }
-  .pillar h3{ margin-top:1mm; font-size:15pt; }
-  .who{ list-style:none; padding:0; margin:3mm 0 4mm; }
-  .who li{ padding:1.6mm 0 1.6mm 7mm; position:relative; border-bottom:1px solid var(--line); }
-  .who li:last-child{ border-bottom:0; }
-  .who li::before{ content:"›"; position:absolute; left:0; color:var(--cherry); font-weight:700; }
-  .who b{ color:var(--blue); }
+  /* ===== generic columns ===== */
+  .cols{ position:absolute; left:42pt; right:42pt; top:118pt; display:flex; gap:30pt; }
+  .col-l{ flex:1; } .col-r{ flex:1; }
 
-  /* mechanic / steps */
-  .mech{ background:var(--mist); border-radius:3mm; padding:6mm 8mm; margin:5mm 0; page-break-inside:avoid; }
-  .mech h3{ margin-top:0; }
-  ol.steps{ margin:2mm 0 0; padding-left:5mm; }
-  ol.steps li{ margin:0 0 2.6mm; padding-left:2mm; }
-  .guard{ border-left:3px solid var(--sun); background:#FFFBF2; padding:4mm 6mm; margin-top:4mm; font-size:10pt; border-radius:0 2mm 2mm 0; }
-  .guard b{ color:#8A5A00; }
+  /* chip list */
+  .chips{ display:flex; flex-wrap:wrap; gap:6pt; margin-top:12pt; }
+  .chip{ font-size:9pt; font-weight:700; color:#CBD3E6; background:var(--card2);
+    border:1px solid var(--cardline); border-radius:20pt; padding:4pt 10pt; }
+  .chip.k{ color:#fff; background:rgba(46,155,255,.16); border-color:rgba(46,155,255,.4); }
+  .chip.r{ color:#fff; background:rgba(224,38,60,.16); border-color:rgba(224,38,60,.45); }
 
-  /* map table */
-  table.map{ width:100%; border-collapse:collapse; margin:5mm 0; font-size:9.5pt; page-break-inside:avoid; }
-  table.map th{ background:var(--blue); color:#fff; text-align:left; padding:3mm 4mm; font-size:8pt;
-    letter-spacing:.06em; text-transform:uppercase; }
-  table.map td{ padding:3.4mm 4mm; border-bottom:1px solid var(--line); vertical-align:top; }
-  table.map tr.dayrow td:first-child{ border-left:4px solid var(--sun); }
-  table.map tr.nightrow td:first-child{ border-left:4px solid var(--indigo); }
-  .maptag{ font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
-  .maptag.d{ color:#8A5A00; } .maptag.n{ color:var(--indigo); }
+  /* quote */
+  .quote{ border-left:3pt solid var(--red); padding:3pt 0 3pt 14pt; margin-top:14pt;
+    font-size:12pt; line-height:1.42; font-style:italic; color:#E3E8F4; }
+  .light .quote{ color:var(--ink); }
+  .quote b{ font-style:normal; }
+  .quote.azure{ border-color:var(--azure); }
 
-  .deliver{ border:1px dashed var(--cherry); border-radius:3mm; padding:7mm 8mm; margin:6mm 0; background:#FFF6F8; page-break-inside:avoid; }
-  .deliver h3{ color:var(--cherry); margin-top:0; }
+  .lbl{ font-size:8.5pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--azure); margin-top:14pt; }
+  .lbl.r{ color:var(--red); }
 
-  .close{ text-align:center; margin:14mm 0 0; }
-  .close .big{ font-family:'Helvetica Neue',Arial,sans-serif; font-weight:800; font-size:22pt; color:var(--blue); letter-spacing:-.5px; }
-  .close .big em{ color:var(--cherry); font-style:normal; }
-  .close .sig{ font-size:10pt; color:var(--silver); margin-top:5mm; }
-  hr.soft{ border:0; border-top:1px solid var(--line); margin:8mm 0; }
+  /* cards */
+  .card{ background:var(--card); border:1px solid var(--cardline); border-radius:9pt; padding:14pt 16pt; position:relative; overflow:hidden; }
+  .card .bar{ position:absolute; left:0; top:0; height:4pt; width:100%; }
+  .ct{ font-family:var(--sans); font-weight:700; font-size:12.5pt; color:#fff; }
+  .cs{ font-size:9.5pt; font-weight:700; margin-top:2pt; }
+  .cb{ font-size:9.5pt; line-height:1.45; color:var(--muted); margin-top:7pt; }
+
+  /* stat tiles */
+  .tiles{ display:flex; gap:10pt; }
+  .tile{ flex:1; background:var(--card); border:1px solid var(--cardline); border-radius:8pt; padding:11pt 12pt; position:relative; overflow:hidden; }
+  .light .tile{ background:var(--lpanel); border-color:var(--lline); }
+  .tile .tbar{ position:absolute; left:0; top:0; width:100%; height:3.5pt; }
+  .tile .tn{ font-family:var(--disp); font-size:24pt; color:#fff; line-height:1; letter-spacing:-.5px; }
+  .light .tile .tn{ color:var(--ink); }
+  .tile .tl{ font-size:8pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:6pt; }
+  .light .tile .tl{ color:var(--lmuted); }
+
+  /* callout band */
+  .callout{ background:linear-gradient(100deg,#13205A,#0E1636); border:1px solid rgba(46,155,255,.3);
+    border-radius:9pt; padding:13pt 16pt; }
+  .callout .ck{ font-size:8pt; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--azure); }
+  .callout .cp{ font-size:11pt; line-height:1.4; color:#EAEEF8; margin-top:5pt; }
+  .callout .cp em{ font-style:normal; color:#FF6275; font-weight:700; }
+
+  svg{ display:block; }
+  .legend{ display:flex; gap:16pt; margin-top:6pt; font-size:8.5pt; font-weight:700; color:#AEB6CC; }
+  .light .legend{ color:#6B7280; }
+  .dot{ display:inline-block; width:9pt; height:9pt; border-radius:50%; vertical-align:-1px; margin-right:5pt; }
 </style>
 </head>
 <body>
 
-<!-- ============ COVER ============ -->
-<div class="cover">
-  <div class="rings"><span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div>
-  <div class="cover-inner">
-    <div class="cover-brand">Haiti<b>Brand</b> &nbsp;·&nbsp; Strategic Intelligence</div>
-    <div class="cover-360">360<sup>°</sup></div>
-    <h1 class="cover-h1">The Strategy <em>Behind</em> the Activation</h1>
-    <hr class="cover-rule">
-    <div class="cover-sub">How 360 wins the Grand Nord — day and night — and beats Toro on the ground. The brand &amp; audience thinking beneath the BTL and digital plan already on your desk.</div>
-    <div class="cover-foot">
-      <div><b>Prepared for Industrias San Miguel</b>Attn. Mirko Carrera — 360 Haïti</div>
-      <div style="text-align:right"><b>HaitiBrand</b>June 2026 · Confidential</div>
+<!-- ===================== 1 · COVER ===================== -->
+<section class="slide cover">
+  <svg class="rings" viewBox="0 0 430 430">
+    <circle cx="250" cy="150" r="168" fill="none" stroke="#2E9BFF" stroke-width="2.2"/>
+    <circle cx="250" cy="250" r="112" fill="none" stroke="#E0263C" stroke-width="2.2"/>
+    <circle cx="86.5" cy="247" r="4.5" fill="#E0263C"/>
+  </svg>
+  <div class="pad">
+    <div class="kick">Campaign Proposal &nbsp;·&nbsp; Brand Strategy &nbsp;·&nbsp; Industrias San Miguel</div>
+    <div class="hero">360 Haiti<br>Brand Strategy</div>
+    <div class="sub">The strategy behind the activation — how 360 wins the Grand Nord, day and night, and beats Toro on the ground. The brand &amp; audience thinking beneath the BTL and digital plan.</div>
+    <div class="lock"><span class="m">HAITIBRAND<span class="d">.</span></span></div>
+  </div>
+</section>
+
+<!-- ===================== 2 · THE IDEA ===================== -->
+<section class="slide">
+  <div class="pad">
+    <div class="kick">01 · The Idea</div>
+    <h1 class="head">Everything you do, <span class="r">you do it at 360.</span></h1>
+    <div class="cols" style="top:128pt; align-items:center;">
+      <div class="col-l">
+        <div class="body">360 is not a moment in the day — it is the whole circle of it. The degree sign is the promise: we are in every part of your life. At sunrise, when the work begins. After dark, when the living begins.</div>
+        <div class="body" style="margin-top:9pt;">One human truth, two faces: <b style="color:#fff">energy lived with honour by day, and with passion by night</b>. Two audiences who together close the circle.</div>
+        <div class="lbl">360 Live</div>
+        <div class="body" style="margin-top:3pt;">Live your life fully, boldly, on your own terms — and 360 is the energy that lets you.</div>
+      </div>
+      <div class="col-r" style="text-align:center;">
+        <svg viewBox="0 0 230 200" style="width:230pt; margin:0 auto;">
+          <circle cx="115" cy="100" r="64" fill="none" stroke="#2E9BFF" stroke-width="26"
+            stroke-dasharray="188 214" stroke-linecap="round" transform="rotate(-90 115 100)"/>
+          <circle cx="115" cy="100" r="64" fill="none" stroke="#E0263C" stroke-width="26"
+            stroke-dasharray="188 214" stroke-dashoffset="-201" stroke-linecap="round" transform="rotate(-90 115 100)"/>
+          <text x="115" y="96" text-anchor="middle" font-family="Archivo Black" font-size="30" fill="#fff">360</text>
+          <text x="115" y="118" text-anchor="middle" font-family="Archivo Black" font-size="14" fill="#E0263C">°</text>
+        </svg>
+        <div class="legend" style="justify-content:center;">
+          <span><span class="dot" style="background:#2E9BFF"></span>DAY · the hustle</span>
+          <span><span class="dot" style="background:#E0263C"></span>NIGHT · the life</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ============ 0 · WHY ============ -->
-<section>
-  <span class="kicker">Why this document</span>
-  <h2>The thinking beneath the plan</h2>
-  <p class="lead">The campaign proposal and the media plan we have already shared answer the <strong>what</strong> — the BTL and digital activation, initiative by initiative. This document is the <strong>why</strong> beneath it: the brand idea and the audience strategy the activation exists to deliver. It also answers, head-on, the question your media team raised — how we segment the audience and how we target it.</p>
-  <p>Everything that follows is built on <strong>HaitiBrand's own market intelligence</strong> — our data, our read of the category, our reading of the competition in the North of Haiti.</p>
+<!-- ===================== 3 · COMPETITIVE WEDGE ===================== -->
+<section class="slide">
+  <div class="pad">
+    <div class="kick">02 · The Competitive Wedge</div>
+    <h1 class="head">Toro owns the day. It leaves the night <span class="r">wide open.</span></h1>
 
-  <div class="callout">
-    <span class="kicker">Our edge, said plainly</span>
-    <p>We know your competitor <em>better than anyone</em>. We hold the data on Toro — how they go to market, how they distribute, how they advertise. We know their commercial strategy and their marketing strategy. That is precisely why we can show you, step by step, how 360 takes this market from them — <em>progressively</em>.</p>
+    <!-- chart -->
+    <div style="position:absolute; left:42pt; top:130pt; width:320pt;">
+      <div style="font-size:8.5pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#AEB6CC;">Occasion presence across the day &nbsp;<span style="color:#6E7488;">— index</span></div>
+      <svg viewBox="0 0 360 176" style="width:320pt; margin-top:6pt;">
+        <!-- night open-lane zone -->
+        <rect x="288" y="6" width="68" height="132" rx="7" fill="rgba(224,38,60,.10)" stroke="rgba(224,38,60,.45)" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="322" y="20" text-anchor="middle" font-family="Liberation Sans" font-weight="bold" font-size="7.5" fill="#FF6275" letter-spacing="1">OPEN LANE</text>
+        <!-- baseline -->
+        <line x1="20" y1="138" x2="356" y2="138" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+        <!-- bars: 5 dayparts, paired Toro(slate) + 360(red) -->
+        <!-- helper geometry: groups centered at 52,118,184,250,322 ; bar width 14 -->
+        <!-- Toro values: 80,88,82,52,16 ; 360 values: 44,50,58,72,94 (index 0-100 -> px*1.24) -->
+        <g>
+          <!-- group1 -->
+          <rect x="38"  y="39"  width="14" height="99"  rx="6" fill="#42587F"/>
+          <rect x="54"  y="83"  width="14" height="55"  rx="6" fill="#E0263C"/>
+          <!-- group2 -->
+          <rect x="104" y="29"  width="14" height="109" rx="6" fill="#42587F"/>
+          <rect x="120" y="76"  width="14" height="62"  rx="6" fill="#E0263C"/>
+          <!-- group3 -->
+          <rect x="170" y="37"  width="14" height="101" rx="6" fill="#42587F"/>
+          <rect x="186" y="66"  width="14" height="72"  rx="6" fill="#E0263C"/>
+          <!-- group4 -->
+          <rect x="236" y="74"  width="14" height="64"  rx="6" fill="#42587F"/>
+          <rect x="252" y="49"  width="14" height="89"  rx="6" fill="#E0263C"/>
+          <!-- group5 (night) -->
+          <rect x="302" y="118" width="14" height="20"  rx="6" fill="#42587F"/>
+          <rect x="318" y="22"  width="14" height="116" rx="6" fill="#E0263C"/>
+        </g>
+        <!-- x labels -->
+        <g font-family="Liberation Sans" font-size="7.5" fill="#8A8FA0" text-anchor="middle">
+          <text x="53"  y="151">Morning</text>
+          <text x="119" y="151">Midday</text>
+          <text x="185" y="151">Afternoon</text>
+          <text x="251" y="151">Evening</text>
+          <text x="322" y="151">Night</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><span class="dot" style="background:#42587F"></span>Toro</span>
+        <span><span class="dot" style="background:#E0263C"></span>360</span>
+        <span style="color:#6E7488; font-weight:400; font-style:italic;">Illustrative occasion model · HaitiBrand market intelligence</span>
+      </div>
+    </div>
+
+    <!-- right column -->
+    <div style="position:absolute; right:42pt; top:130pt; width:300pt;">
+      <div class="body" style="color:#CBD3E6;">Toro is woven into <b style="color:#fff">daily life</b> — present, available, routine. But it does not actively chase the night. The reason is structural: Toro sits inside the <b style="color:#fff">BRANA</b> portfolio, which already owns the night through its other brands. Toro holds back to avoid cannibalising its own stablemates.</div>
+      <div class="callout" style="margin-top:13pt;">
+        <div class="ck">Our edge</div>
+        <div class="cp">We know your competitor <em>better than anyone</em> — their go-to-market, their distribution, their marketing. That is why we can take this market from Toro, <em>progressively</em>: own the night it vacates, then out-respect it in the day.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ 1 · IDEA ============ -->
-<section class="break">
-  <span class="kicker">The idea</span>
-  <h2><span class="n">01</span>Everything you do, you do it at 360</h2>
-  <p class="lead">360 is not a moment in the day. <strong>360 is the whole circle of it.</strong> The degree sign is the promise: we are in every part of your life — at sunrise when the work begins, and after dark when the living begins.</p>
-  <p>One human truth carries the brand: <strong>energy lived with honor by day, and with passion by night.</strong> Two faces of the same idea — and two audiences who together close the circle. That is <em class="cherry">360 Live</em>: you live your life fully, boldly, on your own terms — and 360 is the energy that lets you.</p>
-  <div class="quote">Tout sa w ap fè, ou fè l a 360. — Everything you do, you do it at 360.</div>
-</section>
+<!-- ===================== 4 · AUDIENCE OVERVIEW (light) ===================== -->
+<section class="slide light">
+  <div class="pad">
+    <div class="kick">03 · The Audience</div>
+    <h1 class="head">Two pillars. <span class="b">One circle.</span></h1>
+    <div class="body" style="margin-top:8pt; max-width:560pt;">Not built on demographics — built on a human truth. One pillar lives by day and drinks for the grind. One lives by night and drinks for the life. Together, they are 360.</div>
 
-<!-- ============ 2 · WEDGE ============ -->
-<section class="break">
-  <span class="kicker">The competitive wedge</span>
-  <h2><span class="n">02</span>Beating Toro on the ground</h2>
-  <p class="lead">Toro is the incumbent in the Grand Nord, and we respect what it has built. But our intelligence on Toro exposes a structural weakness we can turn into 360's opening.</p>
-  <p>Toro lives in <strong>daily life</strong> — present, available, woven into the routine. People may even pour it at night. But Toro does <strong>not actively go after the night.</strong> And the reason is structural: Toro sits inside the <strong>BRANA</strong> portfolio, which already owns the night through its other brands. Toro holds back from the night-time occasion on purpose — to avoid cannibalising its own stablemates.</p>
-  <p>That restraint is a door left open. 360 walks straight through it.</p>
-  <div class="quote">We do not attack Toro where it is strong — the day. We <strong>own where it will not go</strong> — the night — and then we earn the day through respect. It is a lane Toro cannot follow us into without breaking its own portfolio logic.</div>
-  <p>This is how 360 moves from a strong number two toward first place — not in one leap, but <strong>progressively</strong>: take the night Toro vacates, then out-respect Toro in the day it owns.</p>
-</section>
-
-<!-- ============ 3 · AUDIENCE ============ -->
-<section class="break">
-  <span class="kicker">The audience</span>
-  <h2><span class="n">03</span>Two pillars, one circle</h2>
-  <p class="lead">We do not build the audience on demographics. We build it on a human truth, split into two pillars under one idea. One lives by <strong>day</strong> and drinks for the grind. One lives by <strong>night</strong> and drinks for the life. Together, they are 360 — the full circle of Haiti.</p>
-
-  <div class="pillar day">
-    <span class="day-tag">☀ Daily life · functional fuel</span>
-    <h3>Pillar 1 — The Hard Workers</h3>
-    <p>The backbone of Haiti. The masses. The informal economy that keeps the country standing. These are the people who choose, every single day, to carry their families on their backs.</p>
-    <ul class="who">
-      <li><b>The Madan Sara</b> — the market women. Single mothers working twenty-hour days, moving goods across the country, feeding the nation, fighting for their children.</li>
-      <li><b>The men who carry the country</b> — moto-taxi and taxi drivers, <b>mécaniciens, ébénistes</b> and the men who work the wood, <b>constructeurs, agriculteurs</b> — everyone who works under the sun and earns with their hands.</li>
-    </ul>
-    <p><strong>The insight:</strong> they do hard, honourable work — and that work demands real energy.</p>
-    <div class="quote">You chose to live at 360. You hustle to carry your family — you are a <em>360 supporter</em>, a 360 man, a 360 woman. Everything you do, you do with honour, and honour takes energy. <strong>360 is there for you.</strong></div>
-    <p><strong>Versus Toro:</strong> this is Toro's stronghold — its daily presence. We do not try to out-spend Toro here. We <strong>out-respect</strong> it — we honour the hustle in a way a portfolio brand never bothers to.</p>
-  </div>
-
-  <div class="pillar night">
-    <span class="night-tag">☾ Night life · experiential energy</span>
-    <h3>Pillar 2 — The Young Generation</h3>
-    <p>Young women and young men — hyped, ambitious, full of life. They want to build a life <em>and</em> live it.</p>
-    <ul class="who">
-      <li><b>What drives them</b> — to study, to build a better future, to do everything with passion, to live boldly on their own terms.</li>
-      <li><b>What they refuse</b> — a life dictated by anyone else. A life someone tells them how to live.</li>
-    </ul>
-    <p><strong>The insight:</strong> ambition and appetite for life both run on energy.</p>
-    <div class="quote kreyol">You need energy to study. Energy to build your future. Energy to advance. Energy to live a life <strong>nobody gets to dictate for you</strong>. So you do it at 360. <em>360 Live</em> — live your life with passion, boldly.</div>
-    <p><strong>Versus Toro:</strong> this is the open lane — the night Toro will not enter. Here, 360 is uncontested.</p>
+    <div style="position:absolute; left:42pt; right:42pt; top:188pt; display:flex; gap:14pt;">
+      <div style="flex:1; background:var(--lpanel); border:1px solid var(--lline); border-top:4pt solid var(--azure); border-radius:9pt; padding:14pt 16pt;">
+        <div style="font-size:8pt; font-weight:700; letter-spacing:.12em; color:#1C7FE6; text-transform:uppercase;">☀ Daily life · functional fuel</div>
+        <div style="font-family:var(--sans); font-weight:700; font-size:16pt; color:var(--ink); margin-top:6pt;">The Hard Workers</div>
+        <div style="font-size:9.5pt; line-height:1.45; color:var(--ink2); margin-top:6pt;">The backbone of Haiti — the masses, the informal economy. The Madan Sara and every man who carries the country on his hands. <b>Honest fuel for the hustle.</b></div>
+      </div>
+      <div style="flex:1; background:var(--lpanel); border:1px solid var(--lline); border-top:4pt solid var(--red); border-radius:9pt; padding:14pt 16pt;">
+        <div style="font-size:8pt; font-weight:700; letter-spacing:.12em; color:var(--red); text-transform:uppercase;">☾ Night life · experiential energy</div>
+        <div style="font-family:var(--sans); font-weight:700; font-size:16pt; color:var(--ink); margin-top:6pt;">The Young Generation</div>
+        <div style="font-size:9.5pt; line-height:1.45; color:var(--ink2); margin-top:6pt;">Hyped, ambitious, full of life. They want to study, build a future and live boldly. <b>The energy of the experience.</b></div>
+      </div>
+      <div style="width:150pt; text-align:center; padding-top:4pt;">
+        <svg viewBox="0 0 150 150" style="width:118pt; margin:0 auto;">
+          <circle cx="75" cy="75" r="46" fill="none" stroke="#2E9BFF" stroke-width="20"
+            stroke-dasharray="136 153" stroke-linecap="round" transform="rotate(-90 75 75)"/>
+          <circle cx="75" cy="75" r="46" fill="none" stroke="#E0263C" stroke-width="20"
+            stroke-dasharray="136 153" stroke-dashoffset="-145" stroke-linecap="round" transform="rotate(-90 75 75)"/>
+          <text x="75" y="80" text-anchor="middle" font-family="Archivo Black" font-size="22" fill="#0F1730">360°</text>
+        </svg>
+        <div style="font-size:8pt; color:var(--lmuted); margin-top:2pt;">one brand, the full circle</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ 4 · OWNING THE NIGHT ============ -->
-<section class="break">
-  <span class="kicker">Owning the night</span>
-  <h2><span class="n">04</span>The night occasion — and the mixer mechanic</h2>
-  <p class="lead">We win the night through a series of <strong>360 experiences</strong>: Meet &amp; Greets, Speakeasy nights, and Speed Dating — <em class="cherry">Powered by 360</em>, with Cherry as the hero flavour. These are 360-branded occasions where the brand lives inside the night as the energy of the room — never as a lecture.</p>
-  <p style="font-size:9.5pt;color:#5A6473;"><em>A note on roles: 360 is the brand at the centre of everything — the events belong to 360. HaitiBrand is the agency that designs and directs the play, based on our analysis of this market and this competitor.</em></p>
-
-  <div class="mech">
-    <h3>The in-venue mixer mechanic — explicit, but contained</h3>
-    <ol class="steps">
-      <li>At a point in the night, <strong>360 Cherry is served as a mixer</strong> — in the glass, with rum, and with vodka.</li>
-      <li>It is <strong>not 360's own message</strong> telling people to mix. It runs through <strong>venue partnerships</strong> in the campaign cities — Cap-Haïtien, Les Gonaïves, Limonade. The <strong>bar owners and servers</strong> present it, and it appears <strong>on the menu</strong> — &ldquo;360 Energy Cherry, mixed with rum / vodka&rdquo; — without naming the rum or vodka brand.</li>
-      <li>People already mix energy with spirits when they go out. We do not invent the behaviour — we <strong>organise and brand the room</strong> where it happens, so 360 becomes the energy of the night.</li>
-    </ol>
-    <div class="guard"><b>Responsible by design:</b> the mixer association is kept <strong>out of 360's paid and social communication entirely</strong>. It lives only inside the venue and the menu — protecting the brand's responsible-marketing posture while 360 quietly owns the night-time occasion.</div>
+<!-- ===================== 5 · PILLAR 1 ===================== -->
+<section class="slide">
+  <div class="pad">
+    <div class="kick" style="color:var(--azure)">03A · Pillar One — Day</div>
+    <h1 class="head">The Hard Workers <span class="b">— the backbone.</span></h1>
+    <div class="cols" style="top:120pt;">
+      <div class="col-l">
+        <div class="body" style="color:#CBD3E6;">The masses. The informal economy that keeps the country standing. The people who choose, every single day, to carry their families on their backs.</div>
+        <div class="chips">
+          <span class="chip k">Madan Sara — market women</span>
+          <span class="chip">moto &amp; taxi drivers</span>
+          <span class="chip">mécaniciens</span>
+          <span class="chip">ébénistes</span>
+          <span class="chip">constructeurs</span>
+          <span class="chip">agriculteurs</span>
+        </div>
+        <div class="body" style="margin-top:8pt; font-style:italic; color:#9DA5BE;">Everyone who works under the sun and earns with their hands.</div>
+      </div>
+      <div class="col-r">
+        <div class="quote azure">You chose to live at 360. You hustle to carry your family — you are a <b style="color:#fff">360 supporter</b>. Everything you do, you do with honour, and honour takes energy. <b style="color:#fff">360 is there for you.</b></div>
+        <div class="lbl">Versus Toro</div>
+        <div class="body" style="margin-top:2pt;">This is Toro's stronghold — its daily presence. We don't out-spend it. We <b style="color:#fff">out-respect</b> it — we honour the hustle in a way a portfolio brand never bothers to.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ 5 · ONE CIRCLE ============ -->
-<section class="break">
-  <span class="kicker">Closing the circle</span>
-  <h2><span class="n">05</span>How the two pillars drive the activation</h2>
-  <p class="lead">The strategy and the plan are one circle. Each pillar maps to an occasion, an activation already in the proposal, and a role for the brand.</p>
-
-  <table class="map">
-    <thead>
-      <tr><th style="width:21%">Pillar</th><th style="width:18%">Occasion</th><th style="width:34%">Activation in the plan</th><th>Brand role</th></tr>
-    </thead>
-    <tbody>
-      <tr class="dayrow">
-        <td><span class="maptag d">☀ Day</span><br><b>The Hard Workers</b></td>
-        <td>The daily grind</td>
-        <td>Cherry Drop sampling · Plen Enèji weekly challenge · 360 Arena daytime energy · tap-tap &amp; OOH · radio</td>
-        <td>Honest fuel for the hustle — honour the work</td>
-      </tr>
-      <tr class="nightrow">
-        <td><span class="maptag n">☾ Night</span><br><b>The Young Generation</b></td>
-        <td>The night out</td>
-        <td>360 night-event series — Meet &amp; Greet · Speakeasy · Speed Dating, Powered by 360 · in-venue Cherry mixer via bar partners</td>
-        <td>The energy of the experience — live boldly</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>Day fuels the grind; night fuels the life. Together they close the circle Toro leaves open — and they make the promise literal: <strong>360 is in your life, 360°.</strong></p>
-</section>
-
-<!-- ============ 6 · DELIVERABLE ============ -->
-<section class="break">
-  <span class="kicker">A deliverable you keep</span>
-  <h2><span class="n">06</span>The 360 Consumer Customer Journey</h2>
-  <p class="lead">As part of running this campaign, HaitiBrand will build and hand ISM a complete <strong>Customer Journey for the 360 energy-drink consumer</strong> — a strategic asset that outlives the campaign.</p>
-
-  <div class="deliver">
-    <h3>What it is</h3>
-    <p>A map of how the Haitian energy-drink consumer <strong>discovers, tries, adopts and advocates</strong> — by day and by night, across both pillars: the Hard Workers and the Young Generation.</p>
-    <h3>How we build it</h3>
-    <p>From the <strong>data and insight HaitiBrand already holds</strong> on the category — including the intelligence we have developed on <strong>Toro</strong> — and then <strong>enriched with live insight captured during the campaign itself.</strong> The campaign does not just sell; it <em>learns</em>, and that learning becomes yours.</p>
-    <h3>What you get</h3>
-    <p>A <strong>campaign deliverable ISM owns and can reuse</strong> for every future activity in this market — grounded in real consumer and competitor truth, not assumption. Because we know this competitor and this consumer this deeply, the journey is built on ground truth.</p>
+<!-- ===================== 6 · PILLAR 2 ===================== -->
+<section class="slide">
+  <div class="pad">
+    <div class="kick" style="color:var(--red)">03B · Pillar Two — Night</div>
+    <h1 class="head">The Young Generation <span class="r">— the life.</span></h1>
+    <div class="cols" style="top:120pt;">
+      <div class="col-l">
+        <div class="body" style="color:#CBD3E6;">Young women and young men — hyped, ambitious, full of life. They want to build a life <b style="color:#fff">and</b> live it.</div>
+        <div class="chips">
+          <span class="chip r">study</span>
+          <span class="chip r">build a future</span>
+          <span class="chip r">live boldly</span>
+          <span class="chip r">on their own terms</span>
+        </div>
+        <div class="body" style="margin-top:8pt;">What they refuse: a life dictated by anyone else — a life someone tells them how to live.</div>
+      </div>
+      <div class="col-r">
+        <div class="quote">You need energy to study. Energy to build your future. Energy to advance. Energy to live a life <b style="color:#fff">nobody gets to dictate for you.</b> So you do it at 360.</div>
+        <div class="lbl r">Versus Toro</div>
+        <div class="body" style="margin-top:2pt;">This is the open lane — the night Toro will not enter. Here, 360 is uncontested.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ CLOSE ============ -->
-<section>
-  <hr class="soft">
-  <div class="close">
-    <div class="big">Everything you do, <em>you do it at 360.</em></div>
-    <div class="sig">HaitiBrand is staged and ready to move the moment you give the word.<br>Prepared for Industrias San Miguel · 360 Haïti · June 2026 · Confidential</div>
+<!-- ===================== 7 · OWNING THE NIGHT ===================== -->
+<section class="slide light">
+  <div class="pad">
+    <div class="kick">04 · Owning The Night</div>
+    <h1 class="head">We don't tell them to drink 360. <span class="b">We own the room where they do.</span></h1>
+
+    <div style="position:absolute; left:42pt; right:42pt; top:128pt; display:flex; gap:12pt;">
+      <div class="card light" style="flex:1; background:var(--lpanel); border:1px solid var(--lline); border-radius:9pt; padding:13pt 15pt;">
+        <div class="bar" style="background:var(--azure)"></div>
+        <div style="font-weight:700; font-size:12.5pt; color:var(--ink);">Meet &amp; Greet</div>
+        <div style="font-size:9pt; line-height:1.4; color:var(--ink2); margin-top:6pt;">Creator and tastemaker nights that pull a crowd and put Cherry in hand.</div>
+      </div>
+      <div class="card light" style="flex:1; background:var(--lpanel); border:1px solid var(--lline); border-radius:9pt; padding:13pt 15pt;">
+        <div class="bar" style="background:var(--red)"></div>
+        <div style="font-weight:700; font-size:12.5pt; color:var(--ink);">Speakeasy</div>
+        <div style="font-size:9pt; line-height:1.4; color:var(--ink2); margin-top:6pt;">Intimate after-dark rooms where the brand is the energy of the moment.</div>
+      </div>
+      <div class="card light" style="flex:1; background:var(--lpanel); border:1px solid var(--lline); border-radius:9pt; padding:13pt 15pt;">
+        <div class="bar" style="background:var(--azure)"></div>
+        <div style="font-weight:700; font-size:12.5pt; color:var(--ink);">Speed Dating</div>
+        <div style="font-size:9pt; line-height:1.4; color:var(--ink2); margin-top:6pt;"><b>Powered by 360</b> — Cherry as the hero of the night's most social hour.</div>
+      </div>
+    </div>
+
+    <!-- mechanic band -->
+    <div style="position:absolute; left:42pt; right:42pt; top:248pt; background:var(--ink); border-radius:10pt; padding:14pt 18pt; color:#fff;">
+      <div style="display:flex; gap:20pt; align-items:flex-start;">
+        <div style="flex:1.6;">
+          <div style="font-size:8pt; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--azure);">The in-venue mixer mechanic</div>
+          <div style="font-size:9.5pt; line-height:1.45; color:#D4DAEA; margin-top:6pt;">At a point in the night, <b style="color:#fff">360 Cherry is served as a mixer</b> — with rum, with vodka. Not 360's message: it runs through <b style="color:#fff">venue partnerships</b> in Cap-Haïtien, Les Gonaïves and Limonade — bar owners, servers and the <b style="color:#fff">menu</b> present it: &ldquo;360 Energy Cherry + rum / vodka,&rdquo; spirit brand unnamed.</div>
+        </div>
+        <div style="flex:1; border-left:1px solid rgba(255,255,255,.14); padding-left:18pt;">
+          <div style="font-size:8pt; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--red);">Responsible by design</div>
+          <div style="font-size:9.5pt; line-height:1.45; color:#D4DAEA; margin-top:6pt;">Kept <b style="color:#fff">out of 360's paid and social communication entirely.</b> The mixer association lives only inside the venue — owning the occasion while protecting the brand.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8 · STRATEGY INTO PLAN (light) ===================== -->
+<section class="slide light">
+  <div class="pad">
+    <div class="kick">05 · Strategy Into Plan</div>
+    <h1 class="head">Day fuels the grind. <span class="r">Night fuels the life.</span></h1>
+
+    <!-- mapping rows -->
+    <div style="position:absolute; left:42pt; right:42pt; top:118pt;">
+      <div style="display:flex; gap:12pt;">
+        <div style="flex:1; background:var(--lpanel); border-left:4pt solid var(--azure); border-radius:8pt; padding:11pt 14pt;">
+          <div style="font-weight:700; font-size:11pt; color:var(--ink);">☀ Day · The Hard Workers</div>
+          <div style="font-size:9pt; line-height:1.4; color:var(--ink2); margin-top:5pt;">Cherry Drop sampling · Plen Enèji weekly challenge · 360 Arena · tap-tap &amp; OOH · radio &nbsp;→&nbsp; <b>honest fuel for the hustle</b></div>
+        </div>
+        <div style="flex:1; background:var(--lpanel); border-left:4pt solid var(--red); border-radius:8pt; padding:11pt 14pt;">
+          <div style="font-weight:700; font-size:11pt; color:var(--ink);">☾ Night · The Young Generation</div>
+          <div style="font-size:9pt; line-height:1.4; color:var(--ink2); margin-top:5pt;">Meet &amp; Greet · Speakeasy · Speed Dating, Powered by 360 · in-venue Cherry mixer &nbsp;→&nbsp; <b>the energy of the experience</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI tiles (from the media plan) -->
+    <div style="position:absolute; left:42pt; right:42pt; top:212pt;">
+      <div style="font-size:8pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lmuted);">The circle, in numbers — flight targets</div>
+      <div class="tiles" style="margin-top:8pt;">
+        <div class="tile"><div class="tbar" style="background:var(--azure)"></div><div class="tn">1.5M+</div><div class="tl">reach</div></div>
+        <div class="tile"><div class="tbar" style="background:var(--red)"></div><div class="tn">5M+</div><div class="tl">impressions</div></div>
+        <div class="tile"><div class="tbar" style="background:var(--azure)"></div><div class="tn">50K+</div><div class="tl">trials</div></div>
+        <div class="tile"><div class="tbar" style="background:var(--red)"></div><div class="tn">5,000+</div><div class="tl">live attendance</div></div>
+        <div class="tile"><div class="tbar" style="background:var(--azure)"></div><div class="tn">6+</div><div class="tl">earned media</div></div>
+      </div>
+      <div class="foot" style="position:static; margin-top:12pt;">Day and night close the circle Toro leaves open — and make the promise literal: 360 is in your life, 360°.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9 · CUSTOMER JOURNEY ===================== -->
+<section class="slide">
+  <div class="pad">
+    <div class="kick">06 · A Deliverable You Keep</div>
+    <h1 class="head">The 360 Consumer <span class="b">Customer Journey.</span></h1>
+    <div class="body" style="margin-top:7pt; max-width:560pt;">A strategic asset that outlives the campaign — how the Haitian energy-drink consumer moves, by day and by night.</div>
+
+    <!-- journey flow -->
+    <div style="position:absolute; left:42pt; right:42pt; top:168pt;">
+      <svg viewBox="0 0 636 96" style="width:100%;">
+        <defs>
+          <marker id="ar" markerWidth="7" markerHeight="7" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#42587F"/>
+          </marker>
+        </defs>
+        <!-- connectors -->
+        <line x1="150" y1="48" x2="170" y2="48" stroke="#42587F" stroke-width="2" marker-end="url(#ar)"/>
+        <line x1="312" y1="48" x2="332" y2="48" stroke="#42587F" stroke-width="2" marker-end="url(#ar)"/>
+        <line x1="474" y1="48" x2="494" y2="48" stroke="#42587F" stroke-width="2" marker-end="url(#ar)"/>
+        <!-- stages -->
+        <g font-family="Liberation Sans">
+          <rect x="6"   y="14" width="144" height="68" rx="11" fill="#151E3D" stroke="rgba(255,255,255,.09)"/>
+          <rect x="6"   y="14" width="144" height="4" rx="2" fill="#2E9BFF"/>
+          <text x="22" y="44" font-size="13" font-weight="bold" fill="#fff">Discover</text>
+          <text x="22" y="62" font-size="8.5" fill="#8A8FA0">radio · OOH · social</text>
+
+          <rect x="168" y="14" width="144" height="68" rx="11" fill="#151E3D" stroke="rgba(255,255,255,.09)"/>
+          <rect x="168" y="14" width="144" height="4" rx="2" fill="#E0263C"/>
+          <text x="184" y="44" font-size="13" font-weight="bold" fill="#fff">Try</text>
+          <text x="184" y="62" font-size="8.5" fill="#8A8FA0">Cherry Drop · the mixer</text>
+
+          <rect x="330" y="14" width="144" height="68" rx="11" fill="#151E3D" stroke="rgba(255,255,255,.09)"/>
+          <rect x="330" y="14" width="144" height="4" rx="2" fill="#2E9BFF"/>
+          <text x="346" y="44" font-size="13" font-weight="bold" fill="#fff">Adopt</text>
+          <text x="346" y="62" font-size="8.5" fill="#8A8FA0">daily fuel · the occasion</text>
+
+          <rect x="492" y="14" width="144" height="68" rx="11" fill="#151E3D" stroke="rgba(255,255,255,.09)"/>
+          <rect x="492" y="14" width="144" height="4" rx="2" fill="#E0263C"/>
+          <text x="508" y="44" font-size="13" font-weight="bold" fill="#fff">Advocate</text>
+          <text x="508" y="62" font-size="8.5" fill="#8A8FA0">UGC · the Arena</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- build sources -->
+    <div style="position:absolute; left:42pt; right:42pt; top:298pt; display:flex; gap:10pt; align-items:center;">
+      <div style="font-size:8.5pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--azure);">Built from</div>
+      <span class="chip k">HaitiBrand category data</span>
+      <span class="chip k">our Toro intelligence</span>
+      <span class="chip r">live capture during the campaign</span>
+    </div>
+    <div style="position:absolute; left:42pt; right:42pt; top:330pt; font-size:9.5pt; font-style:italic; color:#9DA5BE;">A campaign deliverable ISM owns and reuses — grounded in real consumer and competitor truth, not assumption.</div>
+  </div>
+</section>
+
+<!-- ===================== 10 · CLOSE ===================== -->
+<section class="slide">
+  <svg class="rings" viewBox="0 0 430 430" style="opacity:.4; top:40pt;">
+    <circle cx="270" cy="150" r="160" fill="none" stroke="#2E9BFF" stroke-width="2.2"/>
+    <circle cx="270" cy="250" r="104" fill="none" stroke="#E0263C" stroke-width="2.2"/>
+  </svg>
+  <div class="pad">
+    <div class="kick" style="margin-top:34pt;">In closing</div>
+    <div style="font-family:var(--disp); font-size:40pt; line-height:1.0; color:#fff; text-transform:uppercase; letter-spacing:-.5px; margin-top:18pt; max-width:560pt;">Everything you do,<br><span style="color:#E0263C">you do it at 360.</span></div>
+    <div class="body" style="color:#CBD3E6; max-width:430pt; margin-top:20pt; font-size:11pt;">We know your competitor better than anyone — that is why we can show you how to win, progressively. HaitiBrand is staged and ready to move the moment you give the word.</div>
+    <div style="position:absolute; left:42pt; bottom:30pt;"><span class="mono-mark" style="font-size:16pt;">HAITIBRAND<span class="d">.</span></span></div>
+    <div style="position:absolute; right:42pt; bottom:30pt; font-size:8.5pt; color:#6E7488; text-align:right;">Prepared for Industrias San Miguel · 360 Haïti<br>June 2026 · Confidential</div>
   </div>
 </section>
 
